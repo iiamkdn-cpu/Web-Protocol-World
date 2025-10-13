@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Web Protocol World — Topic 2</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">Web Protocol World</h1>
+      <nav class="nav" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="topic1.html">HTTP Basics</a>
+        <a href="topic2.html">HTTP History</a>
+        <a href="key-concepts.html">Key Concepts</a>
+        <a href="references.html">References</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+<main id="main" class="container">
+    <article class="content card">
+      <h2>HTTP History</h2>
+      <p> - Over the years ranging from when it was created all the way to today, HTTP has had 5
+versions. HTTP/0.9 which was made in 1991 was the very first. The original HTTP proposal was
+made by a man named Tim Berners-Lee. It was a small protocol and very limited. It was initially
+made to exchange information for the World Wide Web. Only one line request could return
+HTML and no headers. It was just good enough for the World Wide Web’s earliest pages but
+lacked extensibility. In the mid to late 1990s, HTTP/1.0 and HTTP/1.1 came along. It allowed for
+more benefits and new additions such as headers, persistent connections, and caching controls.
+This was all included in HTTP/1.0. In 1997, HTTP/1.1 was standardized. It fixed issues such as
+interoperability problems which is essentially a wall preventing different computer systems,
+devices, and applications from exchanging and using data. The next HTTP update wouldn’t be
+all the way until 2015 which introduces HTTP/2. HTTP/2 was designed to solve performance
+issues inherent to prior HTTP versions. HTTP/2 introduced things such as binary framing,
+header compression, and optional server pushes. These changes aimed to reduce latency and
+make better use of network resources. The final and most up to date version of HTTP is HTTP/3
+which was introduced in 2022. HTTP semantics were mapped onto QUIC which was developed
+by GOOGLE. QUIC stands for Quick UDP Internet Connections and UDP stands for User
+Datagram Protocol. It integrates TLS or Transport Layer Security and allows for QUIC to
+provide faster connection establishment, improved loss recovery, and better mobility
+characteristics.
+</p>
+<p> - HTTP had to change over the course of the years as web pages started to grow and
+needed to hold more and more information. Web pages grew from small one line and small
+headers to holding hundreds of objects per page. The performance of web pages needs to
+improve so HTTP has to improve. Security also needed to improve as the World Wide Web
+matured to protect its users and clients from threats. Modern versions of HTTP protect and help
+encrypt important and personal data like adding an extra layer of security and protection. Major
+browsers and platforms now default to secure connections.
+</p>
+<p> - HTTP is currently ubiquitous or found everywhere on virtually all computers and
+devices. Major browsers, servers and cloud platforms support HTTP/3 and even so, HTTP/3’s
+usage is steadily increasing. Major browsers and large content platforms such as GOOGLE and
+CloudFare predict and estimate that its traffic share of HTTP/3 will be over 40% by the end of
+2025. HTTP/2 does still exist and it is still available but it is dominated by its newer counterpart
+of HTTP/3. It is now more largely confined to static websites where security is not a primary
+concern.
+</p>
+      <h3><strong>Key Points - </strong></h3>
+      <ol class="Key-Points">
+        <li>HTTP/0.9, which was made in 1991, was the first version and was created by Tim Berners-Lee.</li>
+        <li>HTTP soon evoloved through many different versions until the most recent adaption of HTTP/3.</li>
+        <li>As web pages grew in size and complexity, the performance and speed needed improvement as well as the security.</li>
+        <li>HTTP is supported by virtually all browsers, servers, and cloud platforms.</li>
+      </ol>
+      <h3>Related resources</h3>
+         <ul class="Related-Resources">
+        <li><a href="https://hpbn.co/brief-history-of-http/">A Brief history of HTTP</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP">Evolution of HTTP</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>This site is a class project for IT 3203. Visit the course site:
+        <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">KSU IT-3203 - Intro to Web Development</a>
+      </p>
+      <p class="muted">© Web Protocol World</p>
+    </div>
+  </footer>
+
+</body>
+</html>
