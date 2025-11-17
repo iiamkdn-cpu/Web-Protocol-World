@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Web Protocol World - Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ======================================
+            Quiz CSS
+        ======================================= */
+        .quiz-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+        }
+
+        .quiz-container h1 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        fieldset {
+            margin-bottom: 1.75rem;
+            padding: 1.25rem 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
+        }
+
+        legend {
+            font-weight: bold;
+            margin-bottom: .5rem;
+            padding: 0 .25rem;
+            color: var(--accent);
+        }
+
+        label {
+            display: block;
+            margin: .45rem 0;
+            cursor: pointer;
+            color: var(--accent);
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: .5rem;
+            margin-top: .4rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.07);
+            color: var(--accent);
+        }
+
+        button {
+            padding: .7rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            margin-right: .5rem;
+        }
+
+        #submit-btn {
+            background: #4caf50;
+            color: #fff;
+        }
+
+        #reset-btn {
+            background: #e53935;
+            color: #fff;
+        }
+
+        .results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.04);
+            border-left: 4px solid #4caf50;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .correct {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: #ff5252;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <h1 class="brand">Web Protocol World</h1>
+
+        <!-- Updated Navigation-->
+        <nav class="nav" id="main-nav">
+            <a href="index.html">Home</a>
+            <a href="topic1.html">HTTP Basics</a>
+            <a href="topic2.html">HTTP History</a>
+            <a href="key-concepts.html">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="quiz-container">
+    <h1>Self-Assessment Quiz</h1>
+    <p>Test your understanding of HTTP concepts covered throughout the site.</p>
+
+    <form id="quizForm">
+
+        <!-- Question 1 - fill in the blank -->
+        <fieldset>
+            <legend>1. Fill in the blank</legend>
+            <label>
+                HTTP stands for:
+                <input type="text" id="q1">
+            </label>
+        </fieldset>
+
+        <!-- Question 2 MC -->
+        <fieldset>
+            <legend>2. Which of these is a secure version of HTTP?</legend>
+            <label><input type="radio" name="q2" value="0"> HTTP/1.1</label>
+            <label><input type="radio" name="q2" value="1"> HTTPS</label>
+            <label><input type="radio" name="q2" value="0"> FTP</label>
+            <label><input type="radio" name="q2" value="0"> HTTP/0.9</label>
+        </fieldset>
+
+        <!-- Question 3 MC -->
+        <fieldset>
+            <legend>3. A web browser sends requests to a server to recieve web pages. </legend>
+            <label><input type="radio" name="q3" value="1"> True</label>
+            <label><input type="radio" name="q3" value="0"> False</label>
+        </fieldset>
+
+        <!-- Question 4 MC -->
+        <fieldset>
+            <legend>4. What does URL stand for? </legend>
+            <label><input type="radio" name="q4" value="1"> Uniform Resource Locator</label>
+            <label><input type="radio" name="q4" value="0"> Universal Retrieval Link</label>
+            <label><input type="radio" name="q4" value="0"> Uniform Reference Link</label>
+            <label><input type="radio" name="q4" value="0"> User Reference Location</label>
+        </fieldset>
+
+        <!-- Question 5 Multi-select -->
+        <fieldset>
+            <legend>5. Which of the following are web browsers? (select all that apply):</legend>
+            <label><input type="checkbox" name="q5" value="Chrome"> Chrome</label>
+            <label><input type="checkbox" name="q5" value="Firefox"> Firefox</label>
+            <label><input type="checkbox" name="q5" value="Python"> Python</label>
+            <label><input type="checkbox" name="q5" value="Safari"> Safari</label>
+            <label><input type="checkbox" name="q5" value="HTML"> HTML</label>
+            <label><input type="checkbox" name="q5" value="Internet Explorer"> Internet Explorer</label>
+            <label><input type="checkbox" name="q5" value="Outlook"> Outlook</label>
+        </fieldset>
+
+        <button type="button" id="submit-btn" onclick="gradeQuiz()">Submit Quiz</button>
+        <button type="button" id="reset-btn" onclick="resetQuiz()">Reset</button>
+
+    </form>
+
+    <div id="results" class="results"></div>
+
+</div>
+
+<script>
+/* ======================================
+   Quiz scoring functionality
+======================================= */
+
+function gradeQuiz() {
+    let score = 0;
+    let feedback = "";
+
+    // Correct answers:
+    const answers = {
+        q1: ["Hypertext Transfer Protocol","hypertext transfer protocol"],
+        q2: "1",
+        q3: "1",
+        q4: "1",
+        q5: ["Chrome", "Firefox", "Safari", "Internet Explorer"]
+    };
+
+    // Q1 
+    let q1 = document.getElementById("q1").value.trim().toLowerCase();
+    if (answers.q1.includes(q1)) {
+        score += 20;
+        feedback += "<p class='correct'>1. Correct!</p>";
+    } else {
+        feedback += `<p class='incorrect'>1. Incorrect — Correct answer: ${answers.q1}</p>`;
+    }
+
+    // Q2 
+    let q2 = document.querySelector('input[name="q2"]:checked');
+    if (q2 && q2.value === answers.q2) {
+        score += 20;
+        feedback += "<p class='correct'>2. Correct!</p>";
+    } else {
+        feedback += "<p class='incorrect'>2. Incorrect — Correct answer: HTTPS</p>";
+    }
+
+    // Q3 
+    let q3 = document.querySelector('input[name="q3"]:checked');
+    if (q3 && q3.value === answers.q3) {
+        score += 20;
+        feedback += "<p class='correct'>3. Correct!</p>";
+    } else {
+        feedback += "<p class='incorrect'>3. Incorrect — Correct answer: True</p>";
+    }
+
+    // Q4 
+    let q4 = document.querySelector('input[name="q4"]:checked');
+    if (q4 && q4.value === answers.q4) {
+        score += 20;
+        feedback += "<p class='correct'>4. Correct!</p>";
+    } else {
+        feedback += "<p class='incorrect'>4. Incorrect — Correct answer: Uniform Resource Locator</p>";
+    }
+
+    // Q5 
+    let q5selected = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(cb => cb.value);
+
+    if (JSON.stringify(q5selected.sort()) === JSON.stringify(answers.q5.sort())) {
+        score += 20;
+        feedback += "<p class='correct'>5. Correct!</p>";
+    } else {
+        feedback += "<p class='incorrect'>5. Incorrect — Correct answers: Chrome, Firefox, Safari, Internet Explorer</p>";
+    }
+
+    // Final result
+    let resultHTML = `
+        <h2>Your Results</h2>
+        <p><strong>Total Score:</strong> ${score}/100</p>
+        <p><strong>Status:</strong> ${score >= 60 ? "<span class='correct'>PASS</span>" : "<span class='incorrect'>FAIL</span>"}</p>
+        <hr>
+        ${feedback}
+    `;
+
+    document.getElementById("results").innerHTML = resultHTML;
+    document.getElementById("results").style.display = "block";
+    
+}
+
+function resetQuiz() {
+    document.getElementById("quizForm").reset();
+
+    // Hide results
+    const results = document.getElementById("results");
+    results.style.display = "none";
+    results.classList.remove("fade-in");
+
+    // Scroll back to top of page
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+</script>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>This site is a class project for IT 3203. Visit the course site:
+        <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">KSU IT-3203 - Intro to Web Development</a>
+      </p>
+      <p class="muted">© Web Protocol World</p>
+    </div>
+  </footer>
+
+</body>
+</html>

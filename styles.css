@@ -5,8 +5,8 @@
 :root{
   --bg: #1c1c1e;      
   --panel: #262628;     
-  --muted: #9aa0a6;
-  --accent: #d1d5db;  
+  --muted: #d7dde3;
+  --accent: #ffffff;  
   --card-shadow: rgba(0,0,0,0.5);
   --radius: 12px;
   --container-width: 1000px;
@@ -30,6 +30,12 @@ body{
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 1rem;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
 
 /* ------------------------------
@@ -74,7 +80,7 @@ body{
 
 .nav a{
   text-decoration:none;
-  color:var(--muted);
+  color:var(--accent);
   padding: 0.45rem 0.6rem;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -104,8 +110,8 @@ body{
 }
 
 .hero-img{
-  width: 315px;
-  height: 315px;
+  width: 305px;
+  height: 305px;
   object-fit:cover;
   border-radius: 15px;
   border: 1px solid rgba(255,255,255,0.03);
@@ -132,7 +138,7 @@ body{
 }
 .concept-list dd{
   margin-left: 0;
-  color: var(--muted);
+  color: var(--accent);
 }
 
 
@@ -215,4 +221,22 @@ body{
 .Key-Points ol {
   margin-bottom: 0.5rem;
   color: var(--accent);
+}
+
+button {
+  transition: transform 0.2s, background-color 0.2s;
+}
+button:hover {
+  transform: translateY(-3px);
+  background-color: #439e49; /* Slightly darker shade */
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
